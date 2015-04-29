@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>上传图片</title>
+	</head>
+	<body>
+		<button id="btn_upload">upload</button>
+		<script src="../src/jquery-1.9.1.min.js"></script>
+		<script src="../src/mobile-upload.js"></script>
+		<script src="../src/upload.js"></script>
+		<script>
+		var upload = new Upload();
+		upload.init({target:$('#btn_upload'),url:"data.html", callback:function(result){
+			eval( 'result='+result);
+			$('body').append('<img src="'+result.url+'" width="200" height="200"/><input type="hidden" value="'+result.url+'"/>');
+		}});
+		</script>
+	</body>
+</html>

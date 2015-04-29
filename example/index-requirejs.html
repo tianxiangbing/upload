@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>上传图片</title>
+	</head>
+	<body>
+		<button id="btn_upload">upload</button>
+		<script type="text/javascript" src="../dest/require.js"></script>
+		<script>
+		requirejs.config({
+			//By default load any module IDs from js/lib
+			baseUrl: '../dest',
+			paths: {
+				$: 'jquery-1.11.2',
+				upload:"upload",
+				mobileUpload:"mobile-upload"
+			}
+		});
+		require(['upload','$'], function(Upload,$) {
+			var upload = new Upload();
+			upload.init({target:$('#btn_upload'),url:"data.html", callback:function(result){
+				eval( 'result='+result);
+				$('body').append('<img src="'+result.url+'" width="200" height="200"/><input type="hidden" value="'+result.url+'"/>');
+			}});
+		});
+		</script>
+	</body>
+</html>
