@@ -40,6 +40,7 @@
 			_this.form && _this.form.remove();
 			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;"  accept="image/*" id="' + _this.id + '"/></form>');
 			_this.form.attr("target", _this.frameId);
+			_this.form.css({height:0,widht:0,padding:0});
 			_this.form.attr("action", _this.url);
 			$(_this.target).after(_this.form);
 			_this.fileInput = $('#' + _this.id);
