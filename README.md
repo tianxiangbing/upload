@@ -7,11 +7,19 @@ js上传文件
 	<script src="../src/jquery-1.9.1.min.js"></script>
 	<script src="../src/upload.js"></script>
 	<script>
-	var upload = new Upload();
-	upload.init({target:$('#btn_upload'),url:"data.html", callback:function(result){
-		eval( 'result='+result);
-		$('body').append('<img src="'+result.url+'" width="200" height="200"/><input type="hidden" value="'+result.url+'"/>');
-	}});
+		var upload = new Upload();
+		var loadArr = {};
+		upload.init({target:$('#btn_upload'),url:"data.html",accept:"png,jpg",startUpload:function(input,i){
+			console.log('正在上传中....')
+			loadArr[i] = $('<span>正在上传中....</span>');
+			$('#preview').append(loadArr[i]);
+		}, callback:function(result,i){
+			eval( 'result='+result);
+			setTimeout(function(){
+				//看到正在上传中的效果加了定时器，实际应用中不需要
+				loadArr[i] .html('<img src="'+result.url+'" width="200" height="200"/><input type="hidden" value="'+result.url+'"/>');
+			},1000)
+		}});
 	</script>
 ***
 ##或者  requirejs:
@@ -42,7 +50,9 @@ js上传文件
 ###url:
 		上传提交地址
 ###accept：
-		文件格式，如"jpg,png,jpeg",不作大小写判断
+		文件格式，如"jpg,png,jpeg",不区分大小写
 ##方法
-###callback:function(result)
-		上传完成后的回调,参数result是返回的数据，这里只作字符串的处理，如果要转json可以使用JSON.parse或上面例子里的eval进行转换
+###callback:function(result,i)
+		上传完成后的回调,参数result是返回的数据，这里只作字符串的处理，如果要转json可以使用JSON.parse或上面例子里的eval进行转换  ,i 是一个随机的key，它与当前上传的操作关联
+###startUpload:function(input,i)
+		上传开始时的回调，i 是一个随机的key,它与callback的i是一相同的，可以用它来串联这些回调，比如例子中的loading效果

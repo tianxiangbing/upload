@@ -46,14 +46,15 @@
 			_this.fileInput = $('#' + _this.id);
 			this.base.bindFileChange.call(this);
 		},
-		postFrame: function(input,e) {
+		postFrame: function(input,e,key) {
 			var arr =input.value.split('.');
 			var ext = arr[arr.length -1];
 			var _this = this;
 			var typelist = (this.settings.accept&&this.settings.accept.split(','))||[];
 			var hasext = false;
 			for (var i = typelist.length - 1; i >= 0; i--) {
-				if(ext == typelist[i]){
+				var re = new RegExp(typelist[i],"i");
+				if(re.exec(ext)){
 					hasext = true;
 				}
 			};
@@ -69,7 +70,7 @@
 			this.form.submit();
 			this.frame.off('load');
 			this.frame.on('load', function() {
-				_this.settings.callback && _this.settings.callback($(this.contentWindow.document).find('body').html());
+				_this.settings.callback && _this.settings.callback($(this.contentWindow.document).find('body').html(),key);
 			});
 			_this.createFile();
 		}
