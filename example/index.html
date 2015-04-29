@@ -10,7 +10,7 @@
 		<script src="../src/upload.js"></script>
 		<script>
 		var upload = new Upload();
-		upload.init({target:$('#btn_upload'),url:"data.html", callback:function(result){
+		upload.init({target:$('#btn_upload'),url:"data.html",accept:"png,jpg", callback:function(result){
 			eval( 'result='+result);
 			$('body').append('<img src="'+result.url+'" width="200" height="200"/><input type="hidden" value="'+result.url+'"/>');
 		}});

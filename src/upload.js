@@ -38,7 +38,7 @@
 		createFile: function() {
 			var _this = this;
 			_this.form && _this.form.remove();
-			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;"  accept="image/*" id="' + _this.id + '"/></form>');
+			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;" id="' + _this.id + '"/></form>');
 			_this.form.attr("target", _this.frameId);
 			_this.form.css({height:0,widht:0,padding:0});
 			_this.form.attr("action", _this.url);
@@ -46,8 +46,26 @@
 			_this.fileInput = $('#' + _this.id);
 			this.base.bindFileChange.call(this);
 		},
-		postFrame: function() {
+		postFrame: function(input,e) {
+			var arr =input.value.split('.');
+			var ext = arr[arr.length -1];
 			var _this = this;
+			var typelist = (this.settings.accept&&this.settings.accept.split(','))||[];
+			var hasext = false;
+			for (var i = typelist.length - 1; i >= 0; i--) {
+				if(ext == typelist[i]){
+					hasext = true;
+				}
+			};
+			if(!hasext&& typelist.length){
+				var msg = '文件格式错误,支持格式：'+this.settings.accept;
+				if($.alert){
+					$.alert(msg);
+				}else{
+					alert(msg);
+				}
+				return false;
+			}
 			this.form.submit();
 			this.frame.off('load');
 			this.frame.on('load', function() {

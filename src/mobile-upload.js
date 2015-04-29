@@ -101,7 +101,7 @@
 				var files = e.target.files;
 				if (_this.settings.iframe) {
 					//ifrmae post
-					_this.postFrame();
+					_this.postFrame(this,e);
 				} else
 				if (files) {
 					for (var i = files.length - 1; i >= 0; i--) {

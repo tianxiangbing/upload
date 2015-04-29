@@ -41,6 +41,8 @@ js上传文件
 		上传的对象结点(jquery方式调用的为它本身)
 ###url:
 		上传提交地址
+###accept：
+		文件格式，如"jpg,png,jpeg",不作大小写判断
 ##方法
 ###callback:function(result)
 		上传完成后的回调,参数result是返回的数据，这里只作字符串的处理，如果要转json可以使用JSON.parse或上面例子里的eval进行转换
