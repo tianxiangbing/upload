@@ -81,7 +81,7 @@
 				if (child&&child.nodeType == 1) {
 					result = child.innerHTML;
 				}
-				_this.settings.callback && _this.settings.callback(result, key);
+				_this.settings.callback && _this.settings.callback(result, _this.fileInput, _this.name,_this.target, key);
 			});
 			_this.createFile();
 			return true;
