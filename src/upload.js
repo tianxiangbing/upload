@@ -26,7 +26,7 @@
 			this.url = this.settings.url;
 			this.name = this.settings.name || "files";
 			this.createIframe();
-			this.base.init.call(this,this.settings);
+			this.base.init.call(this, this.settings);
 		},
 		createIframe: function() {
 			this.frameId = 'iframe_upload';
@@ -39,31 +39,35 @@
 		createFile: function() {
 			var _this = this;
 			_this.form && _this.form.remove();
-			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;" id="' + _this.id + '" name="'+_this.name+'"/></form>');
+			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;" id="' + _this.id + '" name="' + _this.name + '"/></form>');
 			_this.form.attr("target", _this.frameId);
-			_this.form.css({height:0,widht:0,padding:0});
+			_this.form.css({
+				height: 0,
+				widht: 0,
+				padding: 0
+			});
 			_this.form.attr("action", _this.url);
 			$('body').append(_this.form);
 			_this.fileInput = $('#' + _this.id);
 			this.base.bindFileChange.call(this);
 		},
-		postFrame: function(input,e,key) {
-			var arr =input.value.split('.');
-			var ext = arr[arr.length -1];
+		postFrame: function(input, e, key) {
+			var arr = input.value.split('.');
+			var ext = arr[arr.length - 1];
 			var _this = this;
-			var typelist = (this.settings.accept&&this.settings.accept.split(','))||[];
+			var typelist = (this.settings.accept && this.settings.accept.split(',')) || [];
 			var hasext = false;
 			for (var i = typelist.length - 1; i >= 0; i--) {
-				var re = new RegExp(typelist[i],"i");
-				if(re.exec(ext)){
+				var re = new RegExp(typelist[i], "i");
+				if (re.exec(ext)) {
 					hasext = true;
 				}
 			};
-			if(!hasext&& typelist.length){
-				var msg = '文件格式错误,支持格式：'+this.settings.accept;
-				if($.alert){
+			if (!hasext && typelist.length) {
+				var msg = '文件格式错误,支持格式：' + this.settings.accept;
+				if ($.alert) {
 					$.alert(msg);
-				}else{
+				} else {
 					alert(msg);
 				}
 				return false;
@@ -71,7 +75,13 @@
 			this.form.submit();
 			this.frame.off('load');
 			this.frame.on('load', function() {
-				_this.settings.callback && _this.settings.callback($(this.contentWindow.document).find('body').html(),key);
+				var body = $($(this.contentWindow.document).find('body'));
+				var child = body.children()[0];
+				var result = body.html();
+				if (child&&child.nodeType == 1) {
+					result = child.innerHTML;
+				}
+				_this.settings.callback && _this.settings.callback(result, key);
 			});
 			_this.createFile();
 			return true;
