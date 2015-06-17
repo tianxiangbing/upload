@@ -18,7 +18,7 @@
 	}
 })(this, function($, Mobile_upload) {
 	function Upload() {}
-	Upload.prototype = Extend(Upload.prototype, new Mobile_upload);
+	Upload.prototype = Extend(Upload.prototype, Mobile_upload);
 	$.extend(Upload.prototype, {
 		init: function(settings) {
 			this.settings = settings;
@@ -89,9 +89,10 @@
 	});
 	//实现继承并可调用base方法
 	function Extend(child, parent) {
+		child =new parent;
 		child.base = {};
-		chid = $.extend(child.base, parent);
-		chid = $.extend(child, parent);
+		$.extend(child.base, child);
+		//chid = $.extend(child, parent);
 		return child;
 	}
 	return Upload;

@@ -31,14 +31,14 @@
 	};
 
 	function Mobile_upload() {
+		window.uploadCount =window.uploadCount||0;
+		window.uploadCount++;
+		var rnd = Math.random().toString().replace('.', '');
+		this.id = 'upload_' + rnd+window.uploadCount.toString();
+		this.fileInput=null;
 	}
 	Mobile_upload.prototype = {
 		init: function(settings) {
-			window.uploadCount =window.uploadCount||0;
-			window.uploadCount++;
-			var rnd = Math.random().toString().replace('.', '');
-			this.id = 'upload_' + rnd+window.uploadCount.toString();
-			this.fileInput;
 			this.settings = $.extend({}, this.settings, settings);
 			this.target = this.settings.target;
 			this.createFile();
