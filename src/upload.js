@@ -43,7 +43,7 @@
 			_this.form.attr("target", _this.frameId);
 			_this.form.css({height:0,widht:0,padding:0});
 			_this.form.attr("action", _this.url);
-			$(_this.target).after(_this.form);
+			$('body').append(_this.form);
 			_this.fileInput = $('#' + _this.id);
 			this.base.bindFileChange.call(this);
 		},
