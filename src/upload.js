@@ -24,6 +24,7 @@
 			this.settings = settings;
 			this.settings.iframe = true;
 			this.url = this.settings.url;
+			this.name = this.settings.name || "files";
 			this.createIframe();
 			this.base.init.call(this,this.settings);
 		},
@@ -38,7 +39,7 @@
 		createFile: function() {
 			var _this = this;
 			_this.form && _this.form.remove();
-			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;" id="' + _this.id + '"/></form>');
+			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file" style="position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;" id="' + _this.id + '" name="'+_this.name+'"/></form>');
 			_this.form.attr("target", _this.frameId);
 			_this.form.css({height:0,widht:0,padding:0});
 			_this.form.attr("action", _this.url);
