@@ -1,7 +1,6 @@
 # upload
 js上传文件
 例子见[DEMO](http://www.lovewebgames.com/jsmodule/upload.html)  
-*这个组件继承自mobile-upload[mobile-upload](http://www.lovewebgames.com/jsmodule/mobile-upload.html)  *
 ##用法
 	<button id="btn_upload">upload</button>
 	<script src="../src/jquery-1.9.1.min.js"></script>
@@ -45,6 +44,10 @@ js上传文件
 	</script>
 #属性和方法
 ##属性
+###accept
+	扩展名,如accept:"png,jpg"
+###name
+	file的name值
 ###target:
 		上传的对象结点(jquery方式调用的为它本身)
 ###url:
@@ -54,5 +57,5 @@ js上传文件
 ##方法
 ###callback:function(result,i)
 		上传完成后的回调,参数result是返回的数据，这里只作字符串的处理，如果要转json可以使用JSON.parse或上面例子里的eval进行转换  ,i 是一个随机的key，它与当前上传的操作关联
-###startUpload:function(input,i)
+###startUpload:function(input,target,i)
 		上传开始时的回调，i 是一个随机的key,它与callback的i是一相同的，可以用它来串联这些回调，比如例子中的loading效果

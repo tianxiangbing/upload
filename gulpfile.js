@@ -13,7 +13,7 @@ var gulp = require('gulp'),
     watchF = require('gulp-watch'),
     concat = require('gulp-concat');
 var paths = {
-    script: ['src/mobile-upload.js','src/upload.js'],
+    script: ['src/upload.js'],
     css: 'src/*.css'
 };
 gulp.task('js', function() {
@@ -41,8 +41,7 @@ gulp.task('requirejs', function() {
                 }
             },
             "paths": {
-                $: 'jquery-1.11.2',
-                'mobileUpload':'../../mobile-upload/src/mobile-upload'
+                $: 'jquery-1.11.2'
             },
             exclude:["$"],
             //这里不打包zepto
