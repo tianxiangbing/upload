@@ -49,11 +49,15 @@ js上传文件
 ###name
 	file的name值
 ###target:
-		上传的对象结点(jquery方式调用的为它本身)
+	上传的对象结点(jquery方式调用的为它本身)
 ###url:
-		上传提交地址
+	上传提交地址
 ###accept：
-		文件格式，如"jpg,png,jpeg",不区分大小写
+	文件格式，如"jpg,png,jpeg",不区分大小写
+###autoPost:
+	是否自动提交表单,默认true,如果为false要指定postTarget
+###postTarget:
+	当autoPost为false时，需要触发提交上传操作的dom元素
 ##方法
 ###callback:function(result,i)
 		上传完成后的回调,参数result是返回的数据，这里只作字符串的处理，如果要转json可以使用JSON.parse或上面例子里的eval进行转换  ,i 是一个随机的key，它与当前上传的操作关联
