@@ -80,7 +80,9 @@
 				}
 				return false;
 			}
-			this.form.submit();
+			setTimeout(function(){
+				_this.form.submit();
+			});
 			this.frame.off('load');
 			this.frame.on('load', function() {
 				var body = $($(this.contentWindow.document).find('body'));
