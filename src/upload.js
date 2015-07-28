@@ -26,6 +26,7 @@
 			this.id = 'upload_' + rnd + window.uploadCount.toString();
 			this.settings = settings;
 			this.settings.iframe = true;
+			this.settings.zIndex = this.settings.zIndex || 9999;
 			this.url = this.settings.url;
 			this.name = this.settings.name || "files";
 			this.target = this.settings.target;
@@ -50,9 +51,8 @@
 			_this.form = $('<form method="post" ENCTYPE="multipart/form-data"><input type="file"  id="' + _this.id + '" name="' + _this.name + '"/></form>');
 			_this.form.attr("target", _this.frameId);
 			_this.form.css({
-				opacity: 0,
-				height:0,
-				width:0
+				height: 0,
+				width: 0
 			});
 			_this.form.attr("action", _this.url);
 			$('body').append(_this.form);
@@ -60,7 +60,8 @@
 			_this.fileInput.css({
 				width: 60,
 				height: 20,
-				opacity: 0
+				opacity: 0,
+				zIndex: _this.settings.zIndex
 			})
 			this.bindFileChange();
 		},
