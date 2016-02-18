@@ -1,0 +1,25 @@
+{
+  "name": "upload",
+  "homepage": "https://github.com/tianxiangbing/upload",
+  "authors": [
+    "tianxiangbing <55342775@qq.com>"
+  ],
+  "description": "上传文件",
+  "main": "src/upload.js",
+  "moduleType": [],
+  "keywords": [
+    "upload"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.2"
+  }
+}
