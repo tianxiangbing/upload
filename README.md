@@ -58,6 +58,8 @@ js上传文件
 	是否自动提交表单,默认true,如果为false要指定postTarget
 ###postTarget:
 	当autoPost为false时，需要触发提交上传操作的dom元素
+###postData:
+	当上传文件时可以post参数, 如{key:value}
 ##方法
 ###callback:function(result,i)
 		上传完成后的回调,参数result是返回的数据，这里只作字符串的处理，如果要转json可以使用JSON.parse或上面例子里的eval进行转换  ,i 是一个随机的key，它与当前上传的操作关联
